@@ -15,8 +15,15 @@ public:
     static inline XyRTTI * rtti = new XyRTTI( "XyFoo", nullptr);
 };
 
+class XyFooFoo {
+public:
+    static inline XyRTTI * rtti = new XyRTTI("XyFooFoo", XyFoo::rtti);
+};
+
 int main() {
     XyFoo xyFoo;
-    std::cout << "Hello, World!" << xyFoo.rtti->name << std::endl;
+    XyFooFoo xyFooFoo;
+    std::cout << "Class of xyFoo: " << xyFoo.rtti->name << std::endl <<
+        "Class of xyFooFoo: "<< xyFooFoo.rtti->name << std::endl;
     return 0;
 }
