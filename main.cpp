@@ -18,24 +18,35 @@ public:
 class XyFooFoo {
 public:
     static inline XyRTTI * rtti = new XyRTTI("XyFooFoo", XyFoo::rtti);
-    bool IsKindOf(XyRTTI const * other) {
-        XyRTTI const * next = rtti;
-        while (next) {
-            if (next == rtti) {
-                return true;
-            }
-            next = next->base;
-        }
-        return false;
-    }
 };
+
+class XyBar {
+public:
+    static inline XyRTTI * rtti = new XyRTTI("XyBar", nullptr);
+};
+
+bool XyIsKindOf(XyRTTI const * item, XyRTTI const * other) {
+    XyRTTI const * next = item;
+    while (next) {
+        if (next == other) {
+            return true;
+        }
+        next = next->base;
+    }
+    return false;
+}
 
 int main() {
     XyFoo xyFoo;
     XyFooFoo xyFooFoo;
-    std::cout << "Class of xyFoo: " << xyFoo.rtti->name << std::endl <<
-        "Class of xyFooFoo: "<< xyFooFoo.rtti->name << std::endl <<
-        "And xyFooFoo IS" << (xyFooFoo.IsKindOf(xyFoo.rtti) ? "" : " NOT") <<
-        " a type of xyFoo" << std::endl;
+    XyBar xyBar;
+    std::cout << "Class of xyFoo: " << xyFoo.rtti->name << std::endl
+            << "Class of xyFooFoo: "<< xyFooFoo.rtti->name << std::endl
+            << "Class of xyBar: "<< xyBar.rtti->name << std::endl
+            << "xyFooFoo IS" << (XyIsKindOf(xyFooFoo.rtti, xyFoo.rtti) ? "" : " NOT")
+            << " a type of xyFoo" << std::endl
+            << "xyBar IS" << (XyIsKindOf(xyBar.rtti, xyFoo.rtti) ? "" : " NOT")
+            << " a type of xyFoo" << std::endl
+        ;
     return 0;
 }
