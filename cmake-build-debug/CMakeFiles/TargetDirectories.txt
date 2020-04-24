@@ -1,0 +1,3 @@
+C:/Users/phaz/CLionProjects/templates_test_01/cmake-build-debug/CMakeFiles/templates_test_01.dir
+C:/Users/phaz/CLionProjects/templates_test_01/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/phaz/CLionProjects/templates_test_01/cmake-build-debug/CMakeFiles/rebuild_cache.dir
